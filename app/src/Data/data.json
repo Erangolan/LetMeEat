@@ -1,0 +1,17 @@
+[
+    { 
+        "id": 3,
+        "idea": "Tripper Api",
+        "group": "Tamar, Haim" 
+    },
+    {
+        "id": 7,
+        "idea": "Cyber crwaler App",
+        "group": "Dan, Eden" 
+    },
+    { 
+        "id": 9,
+        "idea": "IntelliMap",
+        "group": "Dima, Or, Daria" 
+    }
+]
