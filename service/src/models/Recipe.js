@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false)
 
 const schema = {
   id: { type: Number, required: true },
@@ -8,8 +8,8 @@ const schema = {
   instructions: { type: Array, required: true },
   title: { type: String, required: true },
   img: { type: String, required: true },
-};
+}
 
-const recipeSchema = new mongoose.Schema(schema);
-const Recipe = mongoose.model('Recipe', recipeSchema);
-module.exports = Recipe;
+const recipeSchema = new mongoose.Schema(schema)
+const Recipe = mongoose.model('Recipe', recipeSchema)
+module.exports = Recipe
