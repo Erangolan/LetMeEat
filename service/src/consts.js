@@ -8,6 +8,7 @@ const {
   DB_PASS,
   PORT,
   API_KEY,
+  CRON_TIMING = '0 0 */12 * * *',
 } = process.env
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
   DB_PASS,
   PORT,
   API_KEY,
+  CRON_TIMING,
   SERVICE_NAME: `${packagejson.name}:${packagejson.version}`,
 }
