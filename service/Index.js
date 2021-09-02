@@ -4,5 +4,5 @@
  * @author Eran Golan
  * */
 
-require('./server');
-require('./src/db');
+require('./server')
+require('./src/db')

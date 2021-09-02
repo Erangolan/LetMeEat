@@ -12,6 +12,7 @@ const deleteRecipeFromDB = require('./deleteRecipeFromDB')
 const saveRecipeToDB = require('./saveRecipeToDB')
 const getRandomRecipesFromDB = require('./getRandomRecipesFromDB')
 const tmpDeleteRec = require('./tmpDeleteRec')
+const recipeOffline = require('./FetchRecipesOffline')
 
 router.get('/random', [], getRandomRecipes)
 router.get('/getRecipeByIngredients', [], getRecipeByIngredients)
@@ -22,5 +23,6 @@ router.delete('/delete', auth, deleteRecipeFromDB)
 router.post('/saverecipe', auth, saveRecipeToDB)
 router.get('/randomRecipes', getRandomRecipesFromDB)
 router.delete('/tmpDelete', tmpDeleteRec)
+router.get('/offline', recipeOffline)
 
 module.exports = router
