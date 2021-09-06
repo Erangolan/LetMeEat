@@ -10,7 +10,6 @@ const getRecipes = async (req, res) => {
   } = req
 
   try {
-    console.log('user: ', id)
     const { recipes } = await User.findById(id).lean().exec()
 
     return res.json(recipes)
