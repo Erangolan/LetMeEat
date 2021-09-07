@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { selectContent } from './IngredientsSlice'
-// import { fetchRecipesByIngredients } from '../recipes/RecipesSlice'
+import { selectContent, formUpdated } from './IngredientsSlice'
 
 export const SearchForm = () => {
   const contents = useSelector(selectContent)
@@ -19,6 +18,7 @@ export const SearchForm = () => {
 
   const onSaveRecipeClick = () => {
     // dispatch(fetchRecipesByIngredients(content))
+    dispatch(formUpdated(content))
     setContent('')
   }
 
@@ -36,9 +36,6 @@ export const SearchForm = () => {
         />
         <Link to={'/recipes'} onClick={onSaveRecipeClick} className="button muted-button">
         get recipes
-        </Link>
-        <Link to={'/users/MyRecipes'} className="button muted-button">
-        login
         </Link>
       </form>
     </section>

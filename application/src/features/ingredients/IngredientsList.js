@@ -8,7 +8,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import { selectAllIngredients, fetchIngredients, formUpdated } from './IngredientsSlice'
+import { selectAllIngredients, formUpdated } from './IngredientsSlice'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,12 +34,6 @@ export const IngredientsList = () => {
 
   const ingredientsStatus = useSelector((state) => state.ingredients.status)
   const error = useSelector((state) => state.ingredients.error)
-
-  useEffect(() => {
-    if (ingredientsStatus === 'idle') {
-      dispatch(fetchIngredients())
-    }
-  }, [ingredientsStatus, dispatch])
 
   const clickHandle = (title) => {
     dispatch(formUpdated(title))
