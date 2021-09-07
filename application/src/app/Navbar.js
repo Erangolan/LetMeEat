@@ -23,7 +23,7 @@ export const Navbar = () => {
 
         <div className="navContent">
           <div className="navLinks">
-            <Link to="/"></Link>
+            <Link to="/users/recipes">my recipes</Link>
           </div>
         </div>
       </section>

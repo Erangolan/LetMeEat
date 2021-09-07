@@ -7,7 +7,6 @@ import {
 const ingredientsAdapter = createEntityAdapter()
 
 const initialState = ingredientsAdapter.getInitialState({
-  ingredients: [],
   content: [],
   status: 'idle',
   error: null
@@ -38,8 +37,6 @@ export const fetchByIngredients = createAsyncThunk(
 
       const { results } = await res.json()
 
-      console.log('results: ', results)
-
       return results
     } catch(err) {
       console.log(err)
@@ -58,30 +55,28 @@ const ingredientsSlice = createSlice({
       }
     },
   },
-  extraReducers: {
-    [fetchIngredients.pending]: (state) => {
-      state.status = 'loading'
-    },
-    [fetchIngredients.fulfilled]: (state, action) => {
-      state.status = 'succeeded'
-      state.ingredients = state.ingredients.concat(action.payload)
-    },
-    [fetchIngredients.rejected]: (state, action) => {
-      state.status = 'failed'
-      state.error = action.error.message
-    },
-    [fetchIngredients.pending]: (state) => {
-      state.status = 'loading'
-    },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchIngredients.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchIngredients.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        ingredientsAdapter.upsertMany(state, action.payload)
+      })
+      .addCase(fetchIngredients.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   },
 })
 
 export default ingredientsSlice.reducer
 
+export const {
+  selectAll: selectAllIngredients,
+} = ingredientsAdapter.getSelectors((state) => state.ingredients)
+
 export const { formUpdated } = ingredientsSlice.actions
 
-export const selectAllIngredients = (state) => state.ingredients.ingredients
 export const selectContent = (state) => state.ingredients.content
-
-export const selectRecipeById = (state, ingredientId) =>
-  state.ingredients.ingredients.find(({ id }) => id === ingredientId)
