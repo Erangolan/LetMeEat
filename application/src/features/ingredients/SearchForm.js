@@ -18,7 +18,7 @@ export const SearchForm = () => {
 
   const onSaveRecipeClick = () => {
     // dispatch(fetchRecipesByIngredients(content))
-    dispatch(formUpdated(content))
+    // dispatch(formUpdated(content))
     setContent('')
   }
 

@@ -11,6 +11,8 @@ import { Navbar } from './app/Navbar'
 
 import { IngredientsList } from './features/ingredients/IngredientsList'
 import { SearchForm } from './features/ingredients/SearchForm'
+import { RecipesList } from './features/recipes/RecipesList'
+import { SingleRecipePage } from './features/recipes/SingleRecipePage'
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
               </React.Fragment>
             )}
           />
+          <Route exact path="/recipes" component={RecipesList} />
+          <Route exact path="/recipes/:recipeId" component={SingleRecipePage} />
           <Redirect to="/" />
         </Switch>
       </div>

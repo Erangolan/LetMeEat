@@ -6,6 +6,7 @@ import App from './App'
 import store from './app/store'
 import { Provider } from 'react-redux'
 import { fetchIngredients } from './features/ingredients/IngredientsSlice'
+import { fetchRecipes } from './features/recipes/RecipesSlice'
 
 localStorage.clear()
 store.dispatch(fetchIngredients())
