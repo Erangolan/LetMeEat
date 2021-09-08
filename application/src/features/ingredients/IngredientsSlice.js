@@ -21,6 +21,8 @@ export const fetchIngredients = createAsyncThunk(
 
       const { ingredients } = await res.json()
 
+      console.log('ingredients: ', ingredients)
+
       return ingredients
     } catch(err) {
       console.log(err)
@@ -72,11 +74,10 @@ const ingredientsSlice = createSlice({
 })
 
 export default ingredientsSlice.reducer
+export const { formUpdated } = ingredientsSlice.actions
 
 export const {
   selectAll: selectAllIngredients,
 } = ingredientsAdapter.getSelectors((state) => state.ingredients)
-
-export const { formUpdated } = ingredientsSlice.actions
 
 export const selectContent = (state) => state.ingredients.content

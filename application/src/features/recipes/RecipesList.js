@@ -6,9 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import { selectAllIngredients, formUpdated, fetchIngredients } from './IngredientsSlice'
+import { selectAllRecipes, fetchRecipes, deleteRecipe } from './RecipesSlice'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,52 +26,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const IngredientsList = () => {
+export const RecipesList = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const ingredients = useSelector(selectAllIngredients)
+  const recipes = useSelector(selectAllRecipes)
+  console.log('recipes: ', recipes)
 
-  const ingredientsStatus = useSelector((state) => state.ingredients.status)
-  const error = useSelector((state) => state.ingredients.error)
+  const recipesStatus = useSelector((state) => state.recipes.status)
+  const error = useSelector((state) => state.recipes.error)
 
   useEffect(() => {
-    if (ingredientsStatus === 'idle') {
-      dispatch(fetchIngredients())
+    if (recipesStatus === 'idle') {
+      dispatch(fetchRecipes())
     }
-  }, [ingredientsStatus, dispatch])
+  }, [recipesStatus, dispatch])
 
-  const clickHandle = (title) => {
-    dispatch(formUpdated(title))
-  }
+  // const clickHandle = (id) => {
+  //   dispatch(deleteRecipe(id))
+  // }
 
   let content
-  if (ingredientsStatus === 'loading') {
+  if (recipesStatus === 'loading') {
     content = <div className="loader">Loading...</div>
-  } else if (ingredientsStatus === 'succeeded') {
+  } else if (recipesStatus === 'succeeded') {
     content = <div className={classes.root}>
-      <ImageList rowHeight={180} cols={3} style={{ height: 'auto' }} className={classes.imageList}>
-        {ingredients.map((item) => (
+      <ImageList rowHeight={300} cols={2} style={{ height: 'auto' }} className={classes.imageList}>
+        {recipes.map((item) => (
           <ImageListItem key={item.id}>
             <img src={item.image} alt={item.title} />
             <ImageListItemBar
               title={item.title}
               actionIcon={
-                <IconButton aria-label={`info about ${item.title}`} className={classes.icon} onClick={() => clickHandle(item.title)}>
-                  <InfoIcon />
-                </IconButton>
+                <div>
+                  <Link to={`/recipes/${item.id}`} className="button muted-button">
+                    <InfoIcon />
+                  </Link>
+                </div>
               }
             />
           </ImageListItem>
         ))}
       </ImageList>
     </div>
-  } else if (ingredientsStatus === 'failed') {
+  } else if (recipesStatus === 'failed') {
     content = <div>{error}</div>
   }
 
   return (
     <section className="posts-list">
-      <h2>random ingredienst</h2>
+      <h2>recipes</h2>
       {content}
     </section>
   )
