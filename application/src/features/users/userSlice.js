@@ -19,7 +19,7 @@ export const fetchMyRecipes = createAsyncThunk(
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZhNTI0MDZlYzA2NGE0MjRjZjk1NjMzIn0sImlhdCI6MTYzMTExNTA4MX0.G6Mgm7G6YnQLqALMG5Zie1qdce4Fgh2kLGzbtVu5tCU',
+          'token': localStorage.getItem('token'),
         },
       })
       const results = await res.json()
@@ -39,7 +39,7 @@ export const deleteRecipe = createAsyncThunk(
         headers: {
           'Content-Type': 'application/json',
           // 'token': localStorage.getItem('user'),
-          'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZhNTI0MDZlYzA2NGE0MjRjZjk1NjMzIn0sImlhdCI6MTYzMTExNTA4MX0.G6Mgm7G6YnQLqALMG5Zie1qdce4Fgh2kLGzbtVu5tCU',
+          'token': localStorage.getItem('token'),
         },
       })
 
