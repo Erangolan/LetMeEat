@@ -38,7 +38,6 @@ export const deleteRecipe = createAsyncThunk(
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          // 'token': localStorage.getItem('user'),
           'token': localStorage.getItem('token'),
         },
       })
@@ -56,22 +55,28 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(fetchMyRecipes.pending, (state) => {
+        state.status = 'loading'
+      })
       .addCase(fetchMyRecipes.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        console.log(action.payload)
-        usersAdapter.upsertMany(state.users.recipes, action.payload)
+        state.recipes = action.payload
+      })
+      .addCase(fetchMyRecipes.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
       })
       .addCase(deleteRecipe.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        usersAdapter.removeOne(state, action.payload)
+        state.recipes = state.recipes.filter(({ id }) => id !== action.payload)
       })
   },
 })
 
-// export const selectAllRecipes = (state) => state.users.recipes
-
 export default userSlice.reducer
 
-export const {
-  selectAll: selectAllRecipes,
-} = usersAdapter.getSelectors((state) => state.users)
+export const selectAllRecipes = (state) => state.users.recipes
+
+// export const {
+//   selectAll: selectAllRecipes,
+// } = usersAdapter.getSelectors((state) => state.recipes)

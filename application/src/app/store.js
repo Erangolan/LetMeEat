@@ -7,6 +7,6 @@ export default configureStore({
   reducer: {
     ingredients: ingredientsReducer,
     recipes: recipesReducer,
-    user: userReducer,
+    users: userReducer,
   },
 })

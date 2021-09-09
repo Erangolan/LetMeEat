@@ -12,7 +12,7 @@ import RestaurantRoundedIcon from '@material-ui/icons/RestaurantRounded';
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { selectAllRecipes, deleteRecipe, fetchMyRecipes } from './userSlice'
+import { selectAllRecipes, fetchMyRecipes, deleteRecipe } from './userSlice'
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
