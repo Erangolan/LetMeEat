@@ -13,6 +13,7 @@ import { IngredientsList } from './features/ingredients/IngredientsList'
 import { SearchForm } from './features/ingredients/SearchForm'
 import { RecipesList } from './features/recipes/RecipesList'
 import { SingleRecipePage } from './features/recipes/SingleRecipePage'
+import { MyRecipes } from './features/users/MyRecipes'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           />
           <Route exact path="/recipes" component={RecipesList} />
           <Route exact path="/recipes/:recipeId" component={SingleRecipePage} />
+          <Route exact path="/users/recipes" component={MyRecipes} />
           <Redirect to="/" />
         </Switch>
       </div>
