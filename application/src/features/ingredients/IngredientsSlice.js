@@ -21,8 +21,6 @@ export const fetchIngredients = createAsyncThunk(
 
       const { ingredients } = await res.json()
 
-      console.log('ingredients: ', ingredients)
-
       return ingredients
     } catch(err) {
       console.log(err)
