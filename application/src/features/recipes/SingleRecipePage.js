@@ -116,8 +116,7 @@ export const SingleRecipePage = ({ match }) => {
   }
 
   const handleClick = () => {
-    console.log(recipe.id)
-    dispatch(saveRecipe(recipe.id))
+    dispatch(saveRecipe(recipe))
   }
 
   return (

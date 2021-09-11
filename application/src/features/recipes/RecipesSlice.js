@@ -12,8 +12,9 @@ const initialState = recipesAdapter.getInitialState({
 })
 
 export const fetchRecipes = createAsyncThunk(
-  '/recipes/fetchRecipes', async () => {
+  '/recipes/fetchRecipes', async (userText) => {
     try {
+      console.log(userText)
       const res = await fetch('http://localhost:3000/recipes/randomRecipes')
       const { recipes } = await res.json()
 
@@ -27,10 +28,7 @@ export const fetchRecipes = createAsyncThunk(
 export const fetchRecipesByIngredients = createAsyncThunk(
   '/recipes/fetchRecipesByIngredients', async (userText) => {
     try {
-      const res = await fetch(`http://localhost:3000/recipes/getRecipeByIngredients?ingredients=${userText}`, {
-        'method': 'GET',
-      })
-
+      const res = await fetch(`http://localhost:3000/recipes/getRecipeByIngredients?ingredients=${userText}`)
       const results = await res.json()
 
       return results
@@ -41,10 +39,28 @@ export const fetchRecipesByIngredients = createAsyncThunk(
 )
 
 export const saveRecipe = createAsyncThunk(
-  '/recipes/saveRecipe', async (id) => {
+  '/recipes/saveRecipe', async (recipe) => {
     try {
+      const {
+        id,
+        title,
+        ingredients,
+        instructions,
+        image,
+      } = recipe
       await fetch(`http://localhost:3000/recipes/saverecipe?id=${id}`, {
         'method': 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          id,
+          title,
+          ingredients,
+          instructions,
+          img: image,
+        })
       })
 
       return id

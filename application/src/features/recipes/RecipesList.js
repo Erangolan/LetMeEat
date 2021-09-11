@@ -30,20 +30,16 @@ export const RecipesList = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const recipes = useSelector(selectAllRecipes)
-  console.log('recipes: ', recipes)
 
   const recipesStatus = useSelector((state) => state.recipes.status)
   const error = useSelector((state) => state.recipes.error)
+  const userText = useSelector((state) => state.ingredients.content)
 
   useEffect(() => {
     if (recipesStatus === 'idle') {
-      dispatch(fetchRecipes())
+      dispatch(fetchRecipes(userText))
     }
   }, [recipesStatus, dispatch])
-
-  // const clickHandle = (id) => {
-  //   dispatch(deleteRecipe(id))
-  // }
 
   let content
   if (recipesStatus === 'loading') {
