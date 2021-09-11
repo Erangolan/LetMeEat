@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import { fetchIngredients } from './features/ingredients/IngredientsSlice'
 import { fetchRecipes } from './features/recipes/RecipesSlice'
 
-localStorage.clear()
+// localStorage.clear()
 store.dispatch(fetchIngredients())
 
 ReactDOM.render(
