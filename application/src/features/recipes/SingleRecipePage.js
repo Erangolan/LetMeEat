@@ -19,6 +19,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 
 import { selectRecipeById, saveRecipe } from './RecipesSlice'
+import { selectRecipe } from '../users/userSlice'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -105,7 +106,9 @@ export const SingleRecipePage = ({ match }) => {
   const handleChange = (event, newValue) => setValue(newValue);
   const handleChangeIndex = (index) => setValue(index);
 
-  const recipe = useSelector(state => selectRecipeById(state, recipeId))
+  const recipe =
+    useSelector(state => selectRecipeById(state, recipeId)) ||
+    useSelector(state => selectRecipe(state, recipeId))
 
   if (!recipe) {
     return (

@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
+import { IconButton } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import RestaurantRoundedIcon from '@material-ui/icons/RestaurantRounded';
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
@@ -104,9 +104,11 @@ export const MyRecipes = () => {
                 <IconButton aria-label="previous" onClick={() => clickHandle(item.id)}>
                   <DeleteOutlineRoundedIcon />
                 </IconButton>
-                <IconButton aria-label="play/pause">
-                  <RestaurantRoundedIcon />
-                </IconButton>
+                <Link to={`/recipes/${item.id}`}>
+                  <IconButton aria-label="play/pause">
+                    <RestaurantRoundedIcon />
+                  </IconButton>
+                </Link>
                 <IconButton aria-label="next">
                   <EditRoundedIcon />
                 </IconButton>

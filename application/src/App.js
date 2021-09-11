@@ -14,6 +14,8 @@ import { SearchForm } from './features/ingredients/SearchForm'
 import { RecipesList } from './features/recipes/RecipesList'
 import { SingleRecipePage } from './features/recipes/SingleRecipePage'
 import { MyRecipes } from './features/users/MyRecipes'
+import { Login } from './features/users/Login'
+import { PrivateRoute } from './helpers/PrivateRoute';
 
 function App() {
   return (
@@ -21,9 +23,10 @@ function App() {
       <Navbar />
       <div className="App">
         <Switch>
+          <Route exact path="/" component={Login} />
+
           <Route
-            exact
-            path="/"
+            path="/ingredients"
             render={() => (
               <React.Fragment>
                 <SearchForm />
